@@ -1,1 +1,1 @@
-# Speech_Recognition_Translation.pay
+# Speech_Recognition_Translation.py
