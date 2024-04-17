@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import scrolledtext
 import threading
 import speech_recognition as sr
+from googletrans import Translator
 
 class SpeechRecognizerApp:
     def __init__(self, master):
@@ -40,6 +41,10 @@ class SpeechRecognizerApp:
                     audio2 = r.listen(source2)
                     recognized_text = r.recognize_google(audio2)
                     self.text_area.insert(tk.END, recognized_text + '\n')
+                    
+                    translation = Translator().translate(recognized_text, dest='es').text
+                    self.text_area.insert(tk.END, f"Translated Text: {translation}\n")
+                    
                     self.output_text_to_file(recognized_text)
             except sr.RequestError as e:
                 self.text_area.insert(tk.END, "Could not request results; {0d}\n".format(e))
@@ -51,6 +56,8 @@ class SpeechRecognizerApp:
     def output_text_to_file(self, text):
         with open("output.txt", "a") as f:
             f.write(text + "\n")
+
+   
 
 def main():
     root = tk.Tk()
