@@ -21,7 +21,7 @@ class SpeechRecognizerApp:
         self.is_recording = False
 
     def start_recording(self):
-        self.is_recording = True
+        self.is_recording = True    
         self.start_button.config(state=tk.DISABLED)
         self.stop_button.config(state=tk.NORMAL)
 
@@ -41,7 +41,7 @@ class SpeechRecognizerApp:
                     audio2 = r.listen(source2)
                     recognized_text = r.recognize_google(audio2)
                     self.text_area.insert(tk.END, recognized_text + '\n')
-                    
+
                     translation = Translator().translate(recognized_text, dest='es').text
                     self.text_area.insert(tk.END, f"Translated Text: {translation}\n")
                     
