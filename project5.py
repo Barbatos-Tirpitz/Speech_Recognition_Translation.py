@@ -12,7 +12,7 @@ class SpeechRecognizerApp:
         self.language_label = tk.Label(master, text="Select Target Language:")
         self.language_label.grid(row=0, column=0, padx=10, pady=5)
 
-        self.languages = ["English", "French", "German", "Spanish", "Japanese", "Russian", "Portuguese"]
+        self.languages = ["English", "French", "German", "Spanish", "Japanese", "Russian", "Portuguese", "Indonesian", "Vietnamese"]
         self.selected_language = tk.StringVar()
         self.language_dropdown = ttk.Combobox(master, textvariable=self.selected_language, values=self.languages)
         self.language_dropdown.grid(row=0, column=1, padx=10, pady=5)
