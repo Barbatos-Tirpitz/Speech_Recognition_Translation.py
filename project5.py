@@ -40,18 +40,25 @@ class SpeechRecognizerApp:
         self.translated_text_area = scrolledtext.ScrolledText(master, width=40, height=10)
         self.translated_text_area.grid(row=5, column=0, columnspan=2, padx=10, pady=5)
 
+        self.sound_feedback_label = tk.Label(master, text="")
+        self.sound_feedback_label.grid(row=7, column=0, columnspan=2, padx=10, pady=5)
+
         self.is_recording = False
 
     def start_recording(self):
         self.is_recording = True
         self.start_button.config(state=tk.DISABLED)
         self.stop_button.config(state=tk.NORMAL)
+        self.start_button.config(bg="red")  # Change color to indicate recording
+        self.sound_feedback_label.config(text="Sound is being received", fg="green")
         threading.Thread(target=self.record_text).start()
 
     def stop_recording(self):
         self.is_recording = False
         self.start_button.config(state=tk.NORMAL)
         self.stop_button.config(state=tk.DISABLED)
+        self.start_button.config(bg="SystemButtonFace")  # Restore original color
+        self.sound_feedback_label.config(text="")
 
     def clear_screen(self):
         self.text_area.delete('1.0', tk.END)
